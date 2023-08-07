@@ -10,15 +10,15 @@ class Solution
     //from the source vertex S.
     vector <int> dijkstra(int n, vector<vector<int>> adj[], int s)
     {
-        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+        queue<pair<int,int>>pq;
         vector<int>dist(n,1e9);
         dist[s]=0;
         pq.push({0,s});
         
         while(!pq.empty())
         {
-            int d=pq.top().first;
-            int node=pq.top().second;
+            int d=pq.front().first;
+            int node=pq.front().second;
             pq.pop();
             
             for(auto i:adj[node])
