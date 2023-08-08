@@ -10,16 +10,17 @@ class Solution
     //from the source vertex S.
     vector <int> dijkstra(int n, vector<vector<int>> adj[], int s)
     {
-        queue<pair<int,int>>pq;
+        set<pair<int,int>>pq;
         vector<int>dist(n,1e9);
         dist[s]=0;
-        pq.push({0,s});
+        pq.insert({0,s});
         
         while(!pq.empty())
         {
-            int d=pq.front().first;
-            int node=pq.front().second;
-            pq.pop();
+            auto it =*(pq.begin());
+            int d=it.first;
+            int node=it.second;
+            pq.erase(it);
             
             for(auto i:adj[node])
             {
@@ -28,8 +29,12 @@ class Solution
                 
                 if(d+edgewt<dist[edgenode])
                 {
+                    if(dist[edgenode]!=1e9)
+                    {
+                        pq.erase({dist[edgenode],edgenode});
+                    }
                     dist[edgenode]=d+edgewt;
-                    pq.push({d+edgewt,edgenode});
+                    pq.insert({d+edgewt,edgenode});
                 }
             }
         }
