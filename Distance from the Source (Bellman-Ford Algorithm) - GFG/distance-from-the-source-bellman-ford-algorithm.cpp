@@ -15,13 +15,9 @@ class Solution {
     vector<int> bellman_ford(int n, vector<vector<int>>& edges, int s) 
     {
         vector<pair<int,int>>adj[n];
-        for(auto it: edges)
-        {
-            adj[it[0]].push_back({it[1],it[2]});
-        }
         vector<int>dist(n,1e8);
         dist[s]=0;
-        for (int i =0;i<n;i++)
+        for (int i =0;i<n-1;i++)
         {
             for (int j=0;j<edges.size();j++)
             {
