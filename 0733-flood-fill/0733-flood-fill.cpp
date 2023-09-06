@@ -7,6 +7,7 @@ public:
         int n=image.size();
         int m=image[0].size();
         int color_intial=image[i][j];
+        image[i][j]=color;
         while(!q.empty())
         {
             int i =  q.front().first;
